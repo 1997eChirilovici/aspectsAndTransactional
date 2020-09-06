@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AnimalAspect {
 
-    @Pointcut("execution(* com.endava.entity.Dog.toWalk())")
+    @Pointcut("@annotation(com.endava.annotation.Walk)")
     public void takeToWalkPointCut() {}
 
     @Before("takeToWalkPointCut()")
