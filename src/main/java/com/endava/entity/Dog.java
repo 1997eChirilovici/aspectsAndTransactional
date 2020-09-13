@@ -1,9 +1,7 @@
 package com.endava.entity;
 
 import com.endava.annotation.Walk;
-import org.springframework.stereotype.Component;
 
-@Component("dog")
 public class Dog extends Animal {
 
     @Walk
