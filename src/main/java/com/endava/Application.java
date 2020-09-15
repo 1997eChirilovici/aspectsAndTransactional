@@ -22,10 +22,12 @@ public class Application {
 
     @PostConstruct
     void letsGo() {
-        productService.addNewOne(Product.builder()
-                                        .name("Bear")
-                                        .price(2.1)
-                                        .build());
+        Long productId = productService.addNewOne(Product.builder()
+                                                         .name("Bear")
+                                                         .price(2.1)
+                                                         .build());
+
+        productService.modifyProductById(productId);
     }
 
 }

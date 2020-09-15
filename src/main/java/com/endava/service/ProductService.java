@@ -14,14 +14,15 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public void addNewOne(Product product) {
-        for(int i = 1; i <= 10; i++) {
-            product.setPrice(product.getPrice() + i);
-            productRepository.addNewProduct(product.getName(), product.getPrice());
-            if(i == 5) {
-                throw new RuntimeException("ups");
-            }
-        }
+    public Long addNewOne(Product product) {
+        Product saved = productRepository.save(product);
+        return saved.getId();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void modifyProductById(Long id){
+        Product product = productRepository.findById(id).get();
+        product.setPrice(100.0);
     }
 
 }
