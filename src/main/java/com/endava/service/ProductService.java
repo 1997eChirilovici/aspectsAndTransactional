@@ -13,10 +13,15 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-//    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void addNewOne(Product product) {
-        productRepository.save(product);
-        throw new RuntimeException("ups");
+        for(int i = 1; i <= 10; i++) {
+            product.setPrice(product.getPrice() + i);
+            productRepository.addNewProduct(product.getName(), product.getPrice());
+            if(i == 5) {
+                throw new RuntimeException("ups");
+            }
+        }
     }
 
 }
